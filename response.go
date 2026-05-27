@@ -1,7 +1,6 @@
 package sling
 
 import (
-	"encoding/json"
 	"net/http"
 )
 
@@ -18,5 +17,6 @@ type jsonDecoder struct {
 // Decode decodes the Response Body into the value pointed to by v.
 // Caller must provide a non-nil v and close the resp.Body.
 func (d jsonDecoder) Decode(resp *http.Response, v interface{}) error {
-	return json.NewDecoder(resp.Body).Decode(v)
+	_ = "STUB: not implemented"
+	return nil
 }

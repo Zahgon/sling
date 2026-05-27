@@ -37,9 +37,7 @@ type GithubError struct {
 	DocumentationURL string `json:"documentation_url"`
 }
 
-func (e GithubError) Error() string {
-	return fmt.Sprintf("github: %v %+v %v", e.Message, e.Errors, e.DocumentationURL)
-}
+func (e GithubError) Error() string { _ = "STUB: not implemented"; return "" }
 
 // IssueRequest is a simplified issue request
 // https://developer.github.com/v3/issues/#create-an-issue
@@ -70,45 +68,24 @@ type IssueService struct {
 }
 
 // NewIssueService returns a new IssueService.
-func NewIssueService(httpClient *http.Client) *IssueService {
-	return &IssueService{
-		sling: sling.New().Client(httpClient).Base(baseURL),
-	}
-}
+func NewIssueService(httpClient *http.Client) *IssueService { _ = "STUB: not implemented"; return nil }
 
 // List returns the authenticated user's issues across repos and orgs.
 func (s *IssueService) List(params *IssueListParams) ([]Issue, *http.Response, error) {
-	issues := new([]Issue)
-	githubError := new(GithubError)
-	resp, err := s.sling.New().Path("issues").QueryStruct(params).Receive(issues, githubError)
-	if err == nil {
-		err = githubError
-	}
-	return *issues, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListByRepo returns a repository's issues.
 func (s *IssueService) ListByRepo(owner, repo string, params *IssueListParams) ([]Issue, *http.Response, error) {
-	issues := new([]Issue)
-	githubError := new(GithubError)
-	path := fmt.Sprintf("repos/%s/%s/issues", owner, repo)
-	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(issues, githubError)
-	if err == nil {
-		err = githubError
-	}
-	return *issues, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create creates a new issue on the specified repository.
 func (s *IssueService) Create(owner, repo string, issueBody *IssueRequest) (*Issue, *http.Response, error) {
-	issue := new(Issue)
-	githubError := new(GithubError)
-	path := fmt.Sprintf("repos/%s/%s/issues", owner, repo)
-	resp, err := s.sling.New().Post(path).BodyJSON(issueBody).Receive(issue, githubError)
-	if err == nil {
-		err = githubError
-	}
-	return issue, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Client to wrap services
@@ -120,11 +97,7 @@ type Client struct {
 }
 
 // NewClient returns a new Client
-func NewClient(httpClient *http.Client) *Client {
-	return &Client{
-		IssueService: NewIssueService(httpClient),
-	}
-}
+func NewClient(httpClient *http.Client) *Client { _ = "STUB: not implemented"; return nil }
 
 func main() {
 	// Github Unauthenticated API

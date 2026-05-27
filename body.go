@@ -1,12 +1,7 @@
 package sling
 
 import (
-	"bytes"
-	"encoding/json"
 	"io"
-	"strings"
-
-	goquery "github.com/google/go-querystring/query"
 )
 
 // BodyProvider provides Body content for http.Request attachment.
@@ -22,31 +17,26 @@ type bodyProvider struct {
 	body io.Reader
 }
 
-func (p bodyProvider) ContentType() string {
-	return ""
-}
+func (p bodyProvider) ContentType() string { _ = "STUB: not implemented"; return "" }
 
 func (p bodyProvider) Body() (io.Reader, error) {
-	return p.body, nil
+	_ = "STUB: not implemented"
+	return *
+
+	// jsonBodyProvider encodes a JSON tagged struct value as a Body for requests.
+	// See https://golang.org/pkg/encoding/json/#MarshalIndent for details.
+	new(io.Reader), nil
 }
 
-// jsonBodyProvider encodes a JSON tagged struct value as a Body for requests.
-// See https://golang.org/pkg/encoding/json/#MarshalIndent for details.
 type jsonBodyProvider struct {
 	payload interface{}
 }
 
-func (p jsonBodyProvider) ContentType() string {
-	return jsonContentType
-}
+func (p jsonBodyProvider) ContentType() string { _ = "STUB: not implemented"; return "" }
 
 func (p jsonBodyProvider) Body() (io.Reader, error) {
-	buf := &bytes.Buffer{}
-	err := json.NewEncoder(buf).Encode(p.payload)
-	if err != nil {
-		return nil, err
-	}
-	return buf, nil
+	_ = "STUB: not implemented"
+	return *new(io.Reader), nil
 }
 
 // formBodyProvider encodes a url tagged struct value as Body for requests.
@@ -55,14 +45,9 @@ type formBodyProvider struct {
 	payload interface{}
 }
 
-func (p formBodyProvider) ContentType() string {
-	return formContentType
-}
+func (p formBodyProvider) ContentType() string { _ = "STUB: not implemented"; return "" }
 
 func (p formBodyProvider) Body() (io.Reader, error) {
-	values, err := goquery.Values(p.payload)
-	if err != nil {
-		return nil, err
-	}
-	return strings.NewReader(values.Encode()), nil
+	_ = "STUB: not implemented"
+	return *new(io.Reader), nil
 }
